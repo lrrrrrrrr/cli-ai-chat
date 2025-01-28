@@ -169,7 +169,7 @@ print_conversation() {
     fi
   done
   echo ""
-  echo -e "${COLOR_SYSTEM}(Type your message, or use commands: /openai, /deepseek, /models, /quit)${COLOR_RESET}"
+  echo -e "${COLOR_SYSTEM}(Type your message, or use commands: /openai, /deepseek, /models, /clear, /quit)${COLOR_RESET}"
 }
 
 # --------------------------------------------------------------------------- #
@@ -289,6 +289,11 @@ while true; do
         ;;
       /models)
         select_model
+        ;;
+      /clear)
+        messages='[]'
+        rm -f "$history_file"
+        echo -e "${COLOR_SYSTEM}Conversation history cleared.${COLOR_RESET}"
         ;;
       *)
         echo -e "${COLOR_SYSTEM}Unknown command: $user_input${COLOR_RESET}"
